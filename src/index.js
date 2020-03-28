@@ -103,9 +103,13 @@ class Buttons extends React.Component {
     }
     render() {
         return (
-            <Button variant="outlined" color="primary" onClick = {() => console.log(this)}>{this.props.value}
+            <Button variant="outlined" color="primary" onClick = {() => this.clickhandler()}>{this.props.value}
 </Button>
         )
+    }
+
+    clickhandler(event) {
+       //send your json here
     }
 
 }
