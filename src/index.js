@@ -49,14 +49,14 @@ class BasicInput extends React.Component {
         };
     }
 
-    render () {
+    render() {
         return (<label>
-        {this.props.value}
-        <br></br>
-        <input type="text" name="name" />
-        <br></br>
+            {this.props.value}
+            <br></br>
+            <input type="text" name="name" />
+            <br></br>
 
-      </label>)
+        </label>)
     }
 }
 
@@ -65,24 +65,24 @@ class SelectIP extends React.Component {
         super(props);
         this.state = {
             value: null,
-            list : []
+            list: []
         };
     }
 
     render() {
         return (
             <label>
-          {this.props.value}
-          <br></br>
-          <select id="State" onChange={this.myChangeHandler}>
-          <option disabled selected value></option>
-            <option id="Vic">Vic</option>
-            <option id="NSW">NSW</option>
-            <option id="QSD">QSD</option>
-            <option id="ACT">ACT</option>
-          </select>          <br></br>
+                {this.props.value}
+                <br></br>
+                <select id="State" onChange={this.myChangeHandler}>
+                    <option disabled selected value></option>
+                    <option id="Vic">Vic</option>
+                    <option id="NSW">NSW</option>
+                    <option id="QSD">QSD</option>
+                    <option id="ACT">ACT</option>
+                </select>          <br></br>
 
-        </label>
+            </label>
         )
     }
     State = ''
@@ -98,21 +98,49 @@ class Buttons extends React.Component {
         super(props);
         this.state = {
             value: null,
-            list : []
+            list: []
         };
     }
     render() {
         return (
-            <Button variant="outlined" color="primary" onClick = {() => this.clickhandler()}>{this.props.value}
-</Button>
+            <Button variant="outlined" color="primary" onClick={() => this.clickhandler2()}>{this.props.value}
+            </Button>
         )
     }
 
     clickhandler(event) {
-       //send your json here
+        // fetch('http://echo.jsontest.com/key/value/one/two')
+        fetch('https://localhost:44338/v1/personaldetails')
+
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            });
+        //send your json here
+    }
+    clickhandler2(event) {
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: 'React POST Request Example' })
+        };
+        // fetch('http://echo.jsontest.com/key/value/one/two')
+        fetch('https://localhost:44338/v1/personaldetails', requestOptions)
+
+            .then((response) => {
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            });
+        //send your json here
     }
 
 }
+
+
 
 
 
@@ -127,7 +155,7 @@ class Buttons extends React.Component {
 
 //     render () {
 //         return (
-            
+
 //         )
 //     }
 // }
@@ -150,18 +178,18 @@ class Buttons extends React.Component {
 class Bigbox extends React.Component {
 
     renderHeading(x) {
-        return (<Heading value = {x}/>
+        return (<Heading value={x} />
         )
     }
 
     rendersubHeading(x) {
-        return (<SubHeading value = {x}/>
+        return (<SubHeading value={x} />
         )
     }
 
     renderbasicinput(x) {
         return (
-            <BasicInput value = {x}/>
+            <BasicInput value={x} />
         )
 
     }
@@ -169,21 +197,21 @@ class Bigbox extends React.Component {
     statelist = ['State1', 'State2', 'State3']
     countrylist = ['c1', 'c2', 'c3']
 
-    renderselectorip(x,statelist) {
+    renderselectorip(x, statelist) {
         return (
-            <SelectIP value = {x} list = {statelist}/>
+            <SelectIP value={x} list={statelist} />
         )
     }
 
     renderButtons(x) {
         return (
-            <Buttons value = {x} />
+            <Buttons value={x} />
         )
     }
     render() {
         return (
             <div>{this.renderHeading('Step 3 of 4')}
-            {/* </div>
+                {/* </div>
             <div> */}
                 {this.rendersubHeading('Address Details')}
                 {this.renderbasicinput('Street Address(Line 1)')}
