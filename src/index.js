@@ -110,7 +110,7 @@ class Buttons extends React.Component {
 
     clickhandler(event) {
         // fetch('http://echo.jsontest.com/key/value/one/two')
-        fetch('https://localhost:44338/v1/personaldetails')
+        fetch('https://192.168.0.26:44338/v1/personaldetails')
 
             .then((response) => {
                 return response.json();
@@ -127,7 +127,7 @@ class Buttons extends React.Component {
             body: JSON.stringify({ title: 'React POST Request Example' })
         };
         // fetch('http://echo.jsontest.com/key/value/one/two')
-        fetch('https://localhost:44338/v1/personaldetails', requestOptions)
+        fetch('https://192.168.0.26:44338/v1/personaldetails', requestOptions)
 
             .then((response) => {
                 return response.json();
